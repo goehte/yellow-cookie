@@ -1,5 +1,5 @@
 <?php
-// Cookie extension for Yellow CMS
+// Cookie extension for Datenstrom Yellow
 // Provides a simple cookie management
 
 class YellowCookie {
@@ -31,7 +31,6 @@ class YellowCookie {
         }
         return $output;
     }
-
 
     public function getCookie($key) {
         return isset($_COOKIE[$key]) ? $_COOKIE[$key] : "";
