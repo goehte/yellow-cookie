@@ -1,5 +1,5 @@
 <?php
-// Cookie extension for Datenstrom Yellow
+// Cookie extension for Yellow CMS
 // Provides a simple cookie management
 
 class YellowCookie {
@@ -13,9 +13,9 @@ class YellowCookie {
     
     // Handle page content element
     public function onParseContentElement($page, $name, $text, $attributes, $type) {
-        $output = "";
-
+        $output = null;
         if ($name=="cookie" && ($type=="block" || $type=="inline")) {
+            $output = "";
         
             list($comand, $key, $value) = $this->yellow->toolbox->getTextArguments($text);
 
@@ -23,7 +23,11 @@ class YellowCookie {
             if ($comand=="set" && !empty($key) && !empty($value)) $this>setCookie($key, $value);
             
             // Get Cookie with [cookie get key]
-            if ($comand=="get" && !empty($key)) { $output = $this->getCookie($key); }
+            if ($comand=="get" && !empty($key)) {
+                $output = htmlspecialchars($this->getCookie($key)) ; 
+                // Alternative output if key is empty. 
+                if (empty($output) && !empty($value)) $output = htmlspecialchars($value); 
+            }
             
             // Delete Cookie with [cookie del key]
             if ($comand=="del" && !empty($key)) $this->deleteCookie($key);
@@ -31,6 +35,7 @@ class YellowCookie {
         }
         return $output;
     }
+
 
     public function getCookie($key) {
         return isset($_COOKIE[$key]) ? $_COOKIE[$key] : "";
