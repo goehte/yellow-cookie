@@ -30,6 +30,7 @@ This is an example page seting a cookie:
 Reading a cookie: 
 ``` 
 [cookie get Key1]
+[cookie get Key2 "Value2 not set"]  // optional
 ```
 
 Deleting a cookie:  
