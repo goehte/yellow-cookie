@@ -12,7 +12,7 @@ if ($this->yellow->extension->isExisting("cookie")) {
 
     // When multiply time used this approach is suggested:
     $cookie = $this->yellow->extension->get("cookie");
-    $cookie>setCookie("Key2", "Value2");
+    $cookie->setCookie("Key2", "Value2");
     $output = $cookie->getCookie("Key2");
 }
 ```
@@ -38,7 +38,7 @@ Deleting a cookie:
 [cookie del Key1]
 ``` 
 
-The Markdown inline functinality above is more for testing purpose.
+*The Markdown inline functinality in the examples above is more for testing purpose.*
 
 ## Discussion
 This is just an inital proposal.  
